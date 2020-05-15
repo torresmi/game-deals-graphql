@@ -1,0 +1,35 @@
+{
+  "name": "game-deals-graphql",
+  "version": "0.0.1",
+  "description": "GraphQL server utilizing CheapShark REST API for video game deals",
+  "main": "target/main.js",
+  "scripts": {
+    "start": "node target/main.js",
+    "test": "node out/tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torresmi/game-deals-graphql.git"
+  },
+  "keywords": [
+    "video games",
+    "videogames",
+    "deals",
+    "sales",
+    "graphql",
+    "CheapShark"
+  ],
+  "author": "Michael Torres",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/torresmi/game-deals-graphql/issues"
+  },
+  "homepage": "https://github.com/torresmi/game-deals-graphql#readme",
+  "dependencies": {
+    "apollo-datasource": "^0.7.0",
+    "apollo-datasource-rest": "^0.9.0",
+    "apollo-server": "^2.13.1",
+    "graphql": "^15.0.0",
+    "source-map-support": "^0.5.19"
+  }
+}
