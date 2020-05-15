@@ -1,0 +1,14 @@
+{:source-paths ["src/main" "src/test"]
+ :dependencies [[funcool/promesa "5.1.0"]
+                [org.clojure/test.check "0.10.0"]
+                [unbroken-promises "0.1.9"]
+                [binaryage/oops "0.7.0"]
+                [spyscope "0.1.6"]]
+ :builds       {:app         {:target    :node-script
+                              :output-to "target/main.js"
+                              :main      app.main/main!
+                              :devtools  {:before-load app.main/stop
+                                          :after-load  app.main/start}}
+                :test         {:target           :node-test
+                               :output-to        "out/tests.js"
+                               :autorun          false}}}
