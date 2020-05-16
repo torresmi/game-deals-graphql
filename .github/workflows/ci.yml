@@ -1,0 +1,33 @@
+name: CI
+
+on: push
+
+jobs:
+  build_and_check:
+    runs-on: ubuntu-latest
+    container:
+      image: theasp/clojurescript-nodejs:shadow-cljs-alpine
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download dependencies
+        run: shadow-cljs npm-deps && npm install
+
+      - name: Build app
+        run: shadow-cljs compile app
+
+      - name: Lint
+        uses: DeLaGuardo/clojure-lint-action@v1
+        with:
+          clj-kondo-args: --lint src
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Unit test
+        run: |
+          shadow-cljs compile test
+          npm test
+
+      - name: Integration test
+        run: |
+          shadow-cljs compile it-test
+          npm run-script integration-test
