@@ -1,6 +1,7 @@
 (ns app.main-it
-  (:require [cljs.test :refer [deftest is use-fixtures]]
-            [app.main :as sut]))
+  (:require
+   [cljs.test :refer [deftest is use-fixtures]]
+   [app.main :as sut]))
 
 (defn with-server [f]
   (sut/main!)

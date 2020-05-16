@@ -1,6 +1,7 @@
 (ns app.main
-  (:require [shadow.resource :as rc]
-             ["apollo-server" :as apollo]))
+  (:require
+   [shadow.resource :as rc]
+   ["apollo-server" :as apollo]))
 
 (def type-defs (rc/inline "./schema.graphql"))
 
