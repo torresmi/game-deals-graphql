@@ -16,7 +16,6 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           branch-regex: "\\d+"
-          title-template: ""
-          title-prefix-space: false
+          title-template: "[TASK-%branch%]"
           body-template: |
             ### Implements: #%branch%
