@@ -1,11 +1,8 @@
 name: Pull Request Size Labeler
 
-on: 
-  push:
-    branches-ignore:
-      - master
+on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
 
 jobs:
   label_size:
