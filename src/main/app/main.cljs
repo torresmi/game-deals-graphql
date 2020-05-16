@@ -1,4 +1,7 @@
-(ns app.main)
+(ns app.main
+  (:require [shadow.resource :as rc]))
+
+(def type-defs (rc/inline "./schema.graphql"))
 
 (defn start! [] 
   (println "App started"))
