@@ -31,4 +31,3 @@ jobs:
         run: |
           shadow-cljs compile it-test
           npm run-script integration-test
-        
