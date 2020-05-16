@@ -5,7 +5,8 @@
   "main": "target/main.js",
   "scripts": {
     "start": "node target/main.js",
-    "test": "node out/tests.js"
+    "test": "node out/tests.js",
+    "integration-test": "node out/integration-tests.js"
   },
   "repository": {
     "type": "git",
