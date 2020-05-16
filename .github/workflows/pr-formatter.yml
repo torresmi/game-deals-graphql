@@ -18,4 +18,4 @@ jobs:
           branch-regex: "\\d+"
           title-template: "[TASK-%branch%]"
           body-template: |
-            ### Implements: #%branch%
+            ### Fixes: #%branch%
