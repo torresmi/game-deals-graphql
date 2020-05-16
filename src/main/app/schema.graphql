@@ -1,0 +1,161 @@
+type Query {
+    """
+    Get stores that source deals
+    """
+    stores(
+        "If a store is actively being looked at for deals"
+        isActive: Boolean
+        ): [Store!]!
+
+    """
+    Get a Store
+    """
+    storeByID(storeID: ID): Store
+
+    """
+    Search deals
+    """
+    searchDeals(
+        "Search a specific store for deals. Null searches for all active Stores"
+        storeID: ID,
+        input: DealInput
+        ): [Deal!]!
+
+    
+    """
+    Get a deal via ID
+    """
+    dealByID(dealID: ID): Deal
+
+    """
+    Search Games via title
+    """
+    searchGames(title: SearchInput, limit: Int): [Game!]!
+
+    """
+    Get a game via Steam AppID
+    """
+    gameBySteamAppID(steamAppID: ID): Game
+
+    """
+    Get a game via ID
+    """
+    gameByID(gameID: ID): Game
+}
+
+interface Node {
+    id: ID!
+}
+
+# Game
+
+type Game implements Node {
+    id: ID!
+    steamAppID: ID
+    title: String
+    metacriticRating: MetacriticRating
+    steamRating: SteamRating
+    steamworks: Boolean
+    publisher: String
+    releaseDate: Int
+    thumb: String
+    cheapestPriceEver: CheapestPriceEver
+    cheapestDeal: Deal
+    otherDeals: [Deal!]
+}
+
+type CheapestPriceEver {
+    price: String
+    date: Int
+}
+
+# Deal
+
+type Deal implements Node {
+    id: ID!
+    game: Game
+    store: Store
+    priceInfo: PriceInfo
+    lastChange: Int
+    rating: String
+    cheaperDeals: [Deal!]
+}
+
+type SteamRating {
+    text: String
+    percent: String
+    count: Int
+}
+
+type MetacriticRating {
+    link: String!
+    score: String
+}
+
+type PriceInfo {
+    salePrice: String
+    normalPrice: String
+    savingsPercent: String
+}
+
+# Store
+
+type Store implements Node {
+    id: ID!
+    isActive: Boolean
+    name: String
+    images: Images
+    deals(input: DealInput): [Deal!]
+}
+
+type Images {
+    banner: String
+    logo: String
+    icon: String
+}
+
+# Input types
+
+input DealInput {
+    sortBy: Sort
+    order: Order
+    price: PriceInput
+    game: GameInput
+}
+
+input PriceInput {
+    minPrice: Int
+    maxPrice: Int
+}
+
+input SearchInput {
+    value: String
+    exactMatch: Boolean
+}
+
+input GameInput {
+    title: SearchInput
+    minMetacriticScore: Int
+    minSteamPercent: Int
+    steamAppID: ID
+    tripleA: Boolean
+    steamworks: Boolean
+    onSale: Boolean
+}
+
+enum Sort {
+    DEAL_RATING
+    TITLE
+    SAVINGS
+    PRICE
+    METACRITIC
+    REVIEWS
+    RELEASE
+    STORE
+    RECENT
+}
+
+enum Order {
+    ASCENDING
+    DESCENDING
+}

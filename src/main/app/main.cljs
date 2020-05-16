@@ -1,10 +1,19 @@
-(ns app.main)
+(ns app.main
+  (:require [shadow.resource :as rc]
+             ["apollo-server" :as apollo]))
 
-(defn start! [] 
-  (println "App started"))
+(def type-defs (rc/inline "./schema.graphql"))
+
+(def server (new apollo/ApolloServer #js {"typeDefs" type-defs}))
+
+(defn start! []
+  (->
+   (.listen server)
+   (.then #(println "Server ready at" (.-url %)))))
 
 (defn stop! []
-  (println "Closing server."))
+  (println "Closing server.")
+  (.stop server))
 
 (defn main! []
   (println "App loaded!")
