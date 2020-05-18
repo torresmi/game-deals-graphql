@@ -1,6 +1,7 @@
 (ns app.main-it
-  (:require [cljs.test :refer [deftest is use-fixtures]]
-            [app.main :as sut]))
+  (:require
+   [app.main :as sut]
+   [cljs.test :refer [deftest is use-fixtures]]))
 
 (defn with-server [f]
   (sut/main!)
@@ -9,5 +10,5 @@
 
 (use-fixtures :once with-server)
 
-(deftest schema-loaded
-  (is (not (nil? sut/type-defs))))
+(deftest schema-loaded-test
+  (is (some? sut/type-defs)))
