@@ -11,4 +11,4 @@
 (use-fixtures :once with-server)
 
 (deftest schema-loaded-test
-  (is (not (nil? sut/type-defs))))
+  (is (some? sut/type-defs)))
