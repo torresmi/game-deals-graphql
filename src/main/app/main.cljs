@@ -8,13 +8,8 @@
 (def server (new apollo/ApolloServer #js {"typeDefs" type-defs}))
 
 (defn start! []
-  (->
-   (.listen server)
+  (-> (.listen server)
    (.then #(println "Server ready at" (.-url %)))))
-
-(defn stop! []
-  (println "Closing server.")
-  (.stop server))
 
 (defn main! []
   (println "App loaded!")

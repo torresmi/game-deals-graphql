@@ -5,8 +5,7 @@
 
 (defn with-server [f]
   (sut/main!)
-  (f)
-  (sut/stop!))
+  (f))
 
 (use-fixtures :once with-server)
 
