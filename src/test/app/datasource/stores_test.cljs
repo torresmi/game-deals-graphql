@@ -3,7 +3,7 @@
    [app.assertions :refer [is=]]
    [app.datasource.stores :as sut]
    [cljs.spec.alpha :as s]
-   [clojure.test :refer-macros [deftest is testing]]
+   [clojure.test :refer-macros [deftest testing]]
    [clojure.test.check.clojure-test :refer-macros [defspec]]
    [clojure.test.check.generators :as gen]
    [clojure.test.check.properties :refer [for-all]]))
