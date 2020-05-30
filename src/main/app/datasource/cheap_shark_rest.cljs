@@ -1,5 +1,6 @@
 (ns app.datasource.cheap-shark-rest
   (:require
+   [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [clojure.string :refer [join]]
    [promesa.core :as p]))
@@ -21,14 +22,6 @@
       0 (throw (js/Error. "ids is required"))
       1 (fetch-games-with-ids {:id (first ids)})
       (fetch-games-with-ids {:ids (join "," ids)}))))
-
-(defprotocol Service
-  (stores [datasource])
-  (deals [datasource options])
-  (deal [datasource id])
-  (games [datasource options])
-  (game [datasource ids])
-  (alert [datasource options]))
 
 (extend-type RESTDataSource
   Service
