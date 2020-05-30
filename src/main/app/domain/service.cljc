@@ -1,7 +1,7 @@
 (ns app.domain.service)
 
 (defprotocol Service
-  (stores [datasource])
+  (stores [datasource is-active])
   (deals [datasource options])
   (deal [datasource id])
   (games [datasource options])

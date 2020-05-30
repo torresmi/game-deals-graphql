@@ -22,15 +22,15 @@
 (deftest stores-test
   (testing "with success"
     (with-redefs [sut/fetch (spy/stub success-response)]
-      (is= success-response (service/stores service))))
+      (is= success-response (service/stores service nil))))
 
   (testing "with failure"
     (with-redefs [sut/fetch (spy/stub stub-error)]
-      (is= stub-error (service/stores service))))
+      (is= stub-error (service/stores service nil))))
 
   (testing "arguments"
     (with-redefs [sut/fetch mock-fetch-success]
-      (service/stores service)
+      (service/stores service nil)
       (is-true? (spy/called-with? mock-fetch-success service "stores")))))
 
 (deftest deals-test
