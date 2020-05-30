@@ -8,8 +8,8 @@
  :builds       {:app     {:target    :node-script
                           :output-to "target/main.js"
                           :main      app.main/main!
-                          :devtools  {:before-load app.main/stop
-                                      :after-load  app.main/start}}
+                          :devtools  {:before-load app.main/stop!
+                                      :after-load  app.main/start!}}
                 :test    {:target    :node-test
                           :output-to "out/tests.js"
                           :ns-regexp "-test$"
