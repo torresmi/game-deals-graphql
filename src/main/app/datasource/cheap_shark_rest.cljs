@@ -1,5 +1,7 @@
 (ns app.datasource.cheap-shark-rest
   (:require
+   [app.datasource.stores :as stores]
+   [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [clojure.string :refer [join]]
    [promesa.core :as p]))
@@ -22,18 +24,12 @@
       1 (fetch-games-with-ids {:id (first ids)})
       (fetch-games-with-ids {:ids (join "," ids)}))))
 
-(defprotocol Service
-  (stores [datasource])
-  (deals [datasource options])
-  (deal [datasource id])
-  (games [datasource options])
-  (game [datasource ids])
-  (alert [datasource options]))
-
 (extend-type RESTDataSource
   Service
-  (stores [this]
-    (fetch this "stores"))
+  (stores [this is-active]
+    (-> (fetch this "stores")
+        (p/then (partial map stores/store->domain))
+        (p/then (fn [stores] (if (nil? is-active) stores (stores/filter-stores-by-active is-active stores))))))
   (deals [this options]
     (fetch this "deals" options))
   (deal [this id]

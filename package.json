@@ -4,7 +4,7 @@
   "description": "GraphQL server utilizing CheapShark REST API for video game deals",
   "main": "target/main.js",
   "scripts": {
-    "start": "node target/main.js",
+    "start": "nodemon target/main.js",
     "test": "node out/tests.js",
     "integration-test": "node out/integration-tests.js"
   },
@@ -31,6 +31,7 @@
     "apollo-datasource-rest": "^0.9.0",
     "apollo-server": "^2.13.1",
     "graphql": "^15.0.0",
+    "nodemon": "^2.0.4",
     "source-map-support": "^0.5.19"
   }
 }

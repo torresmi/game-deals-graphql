@@ -1,15 +1,13 @@
 {:source-paths ["src/main" "src/test" "src/it"]
  :dependencies [[funcool/promesa "5.1.0"]
-                [org.clojure/test.check "0.10.0"]
+                [org.clojure/test.check "1.0.0"]
                 [binaryage/oops "0.7.0"]
                 [spyscope "0.1.6"]
                 [tortue/spy "2.0.0"]
                 [unbroken-promises "0.1.9"]]
  :builds       {:app     {:target    :node-script
                           :output-to "target/main.js"
-                          :main      app.main/main!
-                          :devtools  {:before-load app.main/stop
-                                      :after-load  app.main/start}}
+                          :main      app.main/main!}
                 :test    {:target    :node-test
                           :output-to "out/tests.js"
                           :ns-regexp "-test$"
