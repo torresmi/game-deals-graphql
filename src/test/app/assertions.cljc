@@ -2,6 +2,7 @@
   (:require
    [cljs.test :refer [is]]))
 
-(def is= (is =))
-(def is-instance? (is instance?))
-(def is-true? (is true?))
+(def is= (comp is =))
+(def is-instance? (comp is instance?))
+(def is-true? (comp is true?))
+(def is-false? (comp is false?))
