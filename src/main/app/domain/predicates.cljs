@@ -1,4 +1,4 @@
-(ns app.domain.specs
+(ns app.domain.predicates
   (:require
    [clojure.string :as string]))
 
