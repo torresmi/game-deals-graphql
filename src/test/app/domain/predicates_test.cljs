@@ -12,5 +12,17 @@
 
 (deftest email?-test []
   (testing "valiid email"
-    (for [email ["simp@le@example.com"]]
-      (is (sut/email? email)))))
+    (for [email ["simp@le@example.com"
+                 "very.common@example.com"
+                 "dispsable.style.email.with+symbol@example.com"
+                 "other.email-with-hyphen@example.com"
+                 "fully-qualified-domain@example"
+                 "user.name+tag+sorting@example.com"
+                 "x@example.com"]]
+      (is (sut/email? email))))
+  
+  (testing "invalid email"
+    (for [email ["Abc.example.com"
+                 "A@b@c@example.com"
+                 "a\"b(c)d,e:f;g<h>i[j\\k]l@example.com"]]
+      (is (false? (sut/email? email))))))
