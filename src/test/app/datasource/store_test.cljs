@@ -1,9 +1,8 @@
 (ns app.datasource.store-test
   (:require
-   [app.assertions :refer [is=]]
    [app.datasource.store :as sut]
    [cljs.spec.alpha :as s]
-   [clojure.test :refer-macros [deftest testing]]
+   [clojure.test :refer [is] :refer-macros [deftest testing]]
    [clojure.test.check.clojure-test :refer-macros [defspec]]
    [clojure.test.check.generators :as gen]
    [clojure.test.check.properties :refer [for-all]]))
@@ -29,11 +28,11 @@
   (let [store (gen/generate store-gen)]
     (testing "isActive is 0"
       (let [inactive-store (assoc store :isActive 0)]
-        (is= false (:isActive (sut/store->domain inactive-store)))))
+        (is (false? (:isActive (sut/store->domain inactive-store))))))
     
     (testing "isActive is 1"
       (let [active-store (assoc store :isActive 1)]
-        (is= true (:isActive (sut/store->domain active-store)))))))
+        (is (true? (:isActive (sut/store->domain active-store))))))))
 
 (defspec filter-by-active-testl
   (for-all [active-stores (gen/list (gen-with-active true))
