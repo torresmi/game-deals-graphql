@@ -1,10 +1,10 @@
-(ns app.datasource.stores
+(ns app.datasource.store
   (:require
-   [app.domain.specs :as domain]
+   [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]
    [clojure.set :as set]))
 
-(s/def ::storeID (s/and string? domain/not-blank?))
+(s/def ::storeID (s/and string? not-blank?))
 (s/def ::isActive (s/nilable (s/int-in 0 2)))
 (s/def ::storeName (s/nilable string?))
 

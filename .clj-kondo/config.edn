@@ -1,3 +1,4 @@
 {:linters
  {:unresolved-symbol
-  {:exclude [(clojure.test.check.clojure-test/defspec)]}}}
+  {:exclude [(clojure.test.check.clojure-test/defspec)
+             (unbroken-promises.macro/is-resolved)]}}}

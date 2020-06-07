@@ -1,8 +1,10 @@
 (ns app.datasource.cheap-shark-rest
   (:require
-   [app.datasource.stores :as stores]
+   [app.datasource.alert :as alerts]
+   [app.datasource.store :as stores]
    [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
+   [cemerick.url :as url]
    [clojure.string :refer [join]]
    [promesa.core :as p]))
 
@@ -24,6 +26,11 @@
       1 (fetch-games-with-ids {:id (first ids)})
       (fetch-games-with-ids {:ids (join "," ids)}))))
 
+(defn- update-alert [datasource type options]
+  (let [updated-options (assoc options :action type)]
+    (-> (fetch datasource "alerts" (alerts/edit-alert->query-string updated-options))
+        (p/then boolean))))
+
 (extend-type RESTDataSource
   Service
   (stores [this is-active]
@@ -38,8 +45,16 @@
     (fetch this "games" options))
   (game [this ids]
     (fetch-games this ids))
-  (alert [this options]
-    (fetch this "alert" options)))
+  (set-alert [this options]
+    (update-alert this "set" options))
+  (delete-alert [this options]
+    (update-alert this "delete" options))
+  (email-alerts [this email]
+    (let [options {:email email :action "manage"}
+          query (url/map->query options)]
+      (-> (fetch this "alerts" query)
+          (p/then (constantly true))
+          (p/catch (constantly false))))))
 
 (defn init []
   (let [data-source (new RESTDataSource)]

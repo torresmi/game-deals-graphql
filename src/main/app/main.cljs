@@ -1,7 +1,7 @@
 (ns app.main
   (:require
    [app.datasource.cheap-shark-rest :as cheap-shark-rest]
-   [app.resolvers :refer [resolver-map]]
+   [app.resolver :refer [resolver-map]]
    ["apollo-server" :as apollo]
    [shadow.resource :as rc]))
 
