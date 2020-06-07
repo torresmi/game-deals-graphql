@@ -1,6 +1,6 @@
 (ns app.resolver-test
   (:require
-   [app.resolvers :as sut]
+   [app.resolver :as sut]
    [cljs.test :refer-macros [deftest is testing]]))
 
 (deftest resolver-map-queries-test []
