@@ -1,7 +1,7 @@
-(ns app.datasource.stores-test
+(ns app.datasource.store-test
   (:require
    [app.assertions :refer [is=]]
-   [app.datasource.stores :as sut]
+   [app.datasource.store :as sut]
    [cljs.spec.alpha :as s]
    [clojure.test :refer-macros [deftest testing]]
    [clojure.test.check.clojure-test :refer-macros [defspec]]

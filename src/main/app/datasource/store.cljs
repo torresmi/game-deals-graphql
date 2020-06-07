@@ -1,4 +1,4 @@
-(ns app.datasource.stores
+(ns app.datasource.store
   (:require
    [app.domain.predicates :refer [not-blank?]]
    [cljs.spec.alpha :as s]

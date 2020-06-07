@@ -1,6 +1,6 @@
 (ns app.datasource.cheap-shark-rest
   (:require
-   [app.datasource.stores :as stores]
+   [app.datasource.store :as stores]
    [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [clojure.string :refer [join]]
