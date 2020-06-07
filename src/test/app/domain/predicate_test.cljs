@@ -1,6 +1,6 @@
 (ns app.domain.predicate-test
   (:require 
-   [app.domain.predicates :as sut]
+   [app.domain.predicate :as sut]
    [clojure.test :refer [is] :refer-macros [deftest testing]]))
 
 (deftest not-blank?-test []
