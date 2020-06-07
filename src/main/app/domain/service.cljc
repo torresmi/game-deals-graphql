@@ -7,4 +7,5 @@
   (games [datasource options])
   (game [datasource ids])
   (set-alert [datasource options])
-  (delete-alert [datasource options]))
+  (delete-alert [datasource options])
+  (email-alerts [datasource email]))

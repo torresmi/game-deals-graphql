@@ -14,8 +14,12 @@
 (defn- get-stores [network {:keys [isActive]}]
   (network/stores network isActive))
 
+(defn- email-alerts [network {:keys [email]}]
+  (network/email-alerts network email))
+
 (def resolver-map {:Query
                    {:stores (with-network get-stores)}
                    :Mutation
                    {:setAlert (with-network network/set-alert)
-                    :deleteAlert (with-network network/delete-alert)}})
+                    :deleteAlert (with-network network/delete-alert)
+                    :emailAlerts (with-network email-alerts)}})

@@ -4,7 +4,7 @@
    [app.datasource.store :as stores]
    [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
-   [clojure.spec.alpha :as s]
+   [cemerick.url :as url]
    [clojure.string :refer [join]]
    [promesa.core :as p]))
 
@@ -48,7 +48,13 @@
   (set-alert [this options]
     (update-alert this "set" options))
   (delete-alert [this options]
-    (update-alert this "delete" options)))
+    (update-alert this "delete" options))
+  (email-alerts [this email]
+    (let [options {:email email :action "manage"}
+          query (url/map->query options)]
+      (-> (fetch this "alerts" query)
+          (p/then (constantly true))
+          (p/catch (constantly false))))))
 
 (defn init []
   (let [data-source (new RESTDataSource)]

@@ -150,3 +150,19 @@
     (with-redefs [sut/fetch mock-fetch-success]
       (service/delete-alert service valid-delete-alert)
       (is (true? (spy/called-with? mock-fetch-success service "alerts" "action=delete&email=test%40example.com&gameID=1"))))))
+
+(deftest email-alerts-test
+  (testing "with success"
+    (with-redefs [sut/fetch (spy/stub success-response)]
+      (is-resolved [result (service/email-alerts service "test@example.com")]
+                   (is (= success-response result)))))
+
+  (testing "with failure"
+    (with-redefs [sut/fetch (spy/stub stub-error)]
+      (is-resolved [result (service/email-alerts service "test@example.com")]
+                   (is (= stub-error result)))))
+
+  (testing "arguments"
+    (with-redefs [sut/fetch mock-fetch-success]
+      (service/email-alerts service "test@example.com")
+      (is (true? (spy/called-with? mock-fetch-success service "alerts" "action=manage&email=test%40example.com"))))))
