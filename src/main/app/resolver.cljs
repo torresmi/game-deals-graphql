@@ -1,4 +1,4 @@
-(ns app.resolvers
+(ns app.resolver
   (:require
    [app.domain.service :as network]
    [oops.core :refer [oget]]

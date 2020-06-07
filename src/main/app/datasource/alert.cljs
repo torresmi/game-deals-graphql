@@ -1,4 +1,4 @@
-(ns app.datasource.alerts
+(ns app.datasource.alert
   (:require
    [app.datasource.game :as game]
    [app.domain.specs :refer [email?]]

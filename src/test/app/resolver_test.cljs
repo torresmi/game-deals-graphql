@@ -1,4 +1,4 @@
-(ns app.resolvers-test
+(ns app.resolver-test
   (:require
    [app.resolvers :as sut]
    [cljs.test :refer-macros [deftest is testing]]))
