@@ -5,7 +5,8 @@
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [cljs.test :refer-macros [deftest is testing]]
    [promesa.core :as p]
-   [spy.core :as spy]))
+   [spy.core :as spy]
+   [unbroken-promises.macro :refer-macros [is-resolved]]))
 
 (def service (sut/init))
 
@@ -21,11 +22,13 @@
 (deftest stores-test
   (testing "with success"
     (with-redefs [sut/fetch (spy/stub success-response)]
-      (is (= success-response (service/stores service nil)))))
+      (is-resolved [result (service/stores service nil)]
+                       (is (= success-response result)))))
 
   (testing "with failure"
     (with-redefs [sut/fetch (spy/stub stub-error)]
-      (is (= stub-error (service/stores service nil)))))
+      (is-resolved [result (service/stores service nil)]
+                   (is (= stub-error (service/stores service nil))))))
 
   (testing "arguments"
     (with-redefs [sut/fetch mock-fetch-success]
@@ -107,6 +110,10 @@
         (service/game service ["1" "2"])
         (is (true? (spy/called-with? mock-fetch-success service "games" {:ids "1,2"})))))))
 
+(def valid-alert {:edit-action "set"
+                  :email "test@example.com"
+                  :gameID 1
+                  :price 20.0})
 (deftest alert-test
   (testing "with success"
     (with-redefs [sut/fetch (spy/stub success-response)]
@@ -118,5 +125,5 @@
 
   (testing "arguments"
     (with-redefs [sut/fetch mock-fetch-success]
-      (service/alert service {})
-      (is (true? (spy/called-with? mock-fetch-success service "alert" {}))))))
+      (service/alert service valid-alert)
+      (is (true? (spy/called-with? mock-fetch-success service "alert" valid-alert))))))

@@ -8,12 +8,20 @@
 (s/def ::email (s/and string? email?))
 (s/def ::price (s/and pos? float?))
 
-(s/def ::edit-alert (s/keys :req [::edit-action
-                                  ::email
-                                  ::game/id
-                                  ::price]))
+(defmulti action-type :edit-action)
+(defmethod action-type "set" []
+  (s/keys :req-un [::edit-action
+                   ::email
+                   ::game/gameID
+                   ::price]))
+(defmethod action-type "delete" []
+  (s/keys :req-un [::edit-action
+                   ::email
+                   ::game/gameID]))
+
+(s/def ::edit-alert (s/multi-spec action-type ::edit-action))
 
 (s/def ::manage-action #(= "manage" %))
 
-(s/def ::manage-request (s/keys :req [::manage-action
-                                      ::email]))
+(s/def ::manage-request (s/keys :req-un [::manage-action
+                                         ::email]))

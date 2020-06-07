@@ -1,8 +1,10 @@
 (ns app.datasource.cheap-shark-rest
   (:require
+   [app.datasource.alert :as alerts]
    [app.datasource.store :as stores]
    [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
+   [clojure.spec.alpha :as s]
    [clojure.string :refer [join]]
    [promesa.core :as p]))
 
@@ -39,7 +41,7 @@
   (game [this ids]
     (fetch-games this ids))
   (alert [this options]
-    (fetch this "alert" options)))
+    (fetch this "alert" (s/conform ::alerts/edit-alert options))))
 
 (defn init []
   (let [data-source (new RESTDataSource)]
