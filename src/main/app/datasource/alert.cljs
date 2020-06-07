@@ -1,7 +1,7 @@
 (ns app.datasource.alert
   (:require
    [app.datasource.game :as game]
-   [app.domain.specs :refer [email?]]
+   [app.domain.predicate :refer [email?]]
    [cljs.spec.alpha :as s]))
 
 (s/def ::edit-action #{"set" "delete"})

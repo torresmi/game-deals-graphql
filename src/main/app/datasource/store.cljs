@@ -1,6 +1,6 @@
 (ns app.datasource.store
   (:require
-   [app.domain.predicates :refer [not-blank?]]
+   [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]
    [clojure.set :as set]))
 
