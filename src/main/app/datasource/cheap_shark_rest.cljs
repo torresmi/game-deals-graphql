@@ -26,6 +26,11 @@
       1 (fetch-games-with-ids {:id (first ids)})
       (fetch-games-with-ids {:ids (join "," ids)}))))
 
+(defn- update-alert [datasource type options]
+  (let [updated-options (assoc options :action type)]
+    (-> (fetch datasource "alerts" (alerts/edit-alert->query-string updated-options))
+        (p/then boolean))))
+
 (extend-type RESTDataSource
   Service
   (stores [this is-active]
@@ -40,8 +45,10 @@
     (fetch this "games" options))
   (game [this ids]
     (fetch-games this ids))
-  (alert [this options]
-    (fetch this "alert" (s/conform ::alerts/edit-alert options))))
+  (set-alert [this options]
+    (update-alert this "set" options))
+  (delete-alert [this options]
+    (update-alert this "delete" options)))
 
 (defn init []
   (let [data-source (new RESTDataSource)]

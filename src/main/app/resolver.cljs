@@ -15,4 +15,7 @@
   (network/stores network isActive))
 
 (def resolver-map {:Query
-                   {:stores (with-network get-stores)}})
+                   {:stores (with-network get-stores)}
+                   :Mutation
+                   {:setAlert (with-network network/set-alert)
+                    :deleteAlert (with-network network/delete-alert)}})

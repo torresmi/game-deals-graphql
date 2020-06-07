@@ -110,20 +110,43 @@
         (service/game service ["1" "2"])
         (is (true? (spy/called-with? mock-fetch-success service "games" {:ids "1,2"})))))))
 
-(def valid-alert {:edit-action "set"
+(def valid-set-alert {:action "set"
                   :email "test@example.com"
-                  :gameID 1
-                  :price 20.0})
-(deftest alert-test
+                  :gameID "1"
+                  :price 20.50})
+
+(deftest set-alert-test
   (testing "with success"
     (with-redefs [sut/fetch (spy/stub success-response)]
-      (is (= success-response (service/alert service {})))))
+      (is-resolved [result (service/set-alert service valid-set-alert)]
+                   (is (= success-response result)))))
 
   (testing "with failure"
     (with-redefs [sut/fetch (spy/stub stub-error)]
-      (is (= stub-error (service/alert service {})))))
+      (is-resolved [result (service/set-alert service valid-set-alert)]
+                   (is (= stub-error result)))))
 
   (testing "arguments"
     (with-redefs [sut/fetch mock-fetch-success]
-      (service/alert service valid-alert)
-      (is (true? (spy/called-with? mock-fetch-success service "alert" valid-alert))))))
+      (service/set-alert service valid-set-alert)
+      (is (true? (spy/called-with? mock-fetch-success service "alerts" "action=set&email=test%40example.com&gameID=1&price=20.5"))))))
+
+(def valid-delete-alert {:action "delete"
+                         :email "test@example.com"
+                         :gameID "1"})
+
+(deftest delete-alert-test
+  (testing "with success"
+    (with-redefs [sut/fetch (spy/stub success-response)]
+      (is-resolved [result (service/delete-alert service valid-delete-alert)]
+                   (is (= success-response result)))))
+
+  (testing "with failure"
+    (with-redefs [sut/fetch (spy/stub stub-error)]
+      (is-resolved [result (service/delete-alert service valid-delete-alert)]
+                   (is (= stub-error result)))))
+
+  (testing "arguments"
+    (with-redefs [sut/fetch mock-fetch-success]
+      (service/delete-alert service valid-delete-alert)
+      (is (true? (spy/called-with? mock-fetch-success service "alerts" "action=delete&email=test%40example.com&gameID=1"))))))

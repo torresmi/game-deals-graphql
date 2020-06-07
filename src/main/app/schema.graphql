@@ -43,6 +43,18 @@ type Query {
     gameByID(gameID: ID): Game
 }
 
+type Mutation {
+    """
+    Set up an email alert for a game when goes below a certain price
+    """
+    setAlert(email: String, gameID: ID, price: Float): Boolean
+
+    """
+    Delete an active alert for a game
+    """
+    deleteAlert(email: String, gameID: ID): Boolean
+}
+
 interface Node {
     id: ID!
 }

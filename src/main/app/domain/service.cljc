@@ -6,4 +6,5 @@
   (deal [datasource id])
   (games [datasource options])
   (game [datasource ids])
-  (alert [datasource options]))
+  (set-alert [datasource options])
+  (delete-alert [datasource options]))
