@@ -6,10 +6,9 @@
    [app.datasource.cheapshark.pricing :as pricing]
    [app.datasource.cheapshark.steam :as steam]
    [app.datasource.cheapshark.store :as store]
-   [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]))
 
-(s/def ::pageNumber pos-int?)
+(s/def ::pageNumber nat-int?)
 (s/def ::pageSize pos-int?)
 (s/def ::sortBy #{"Deal Rating"
                   "Title"
@@ -21,8 +20,9 @@
                   "Store"
                   "recent"})
 (s/def ::desc boolean?)
-(s/def ::lowerPrice pos-int?)
-(s/def ::metacritic pos-int?)
+(s/def ::lowerPrice double?)
+(s/def ::upperPrice double?)
+(s/def ::metacritic nat-int?)
 (s/def ::exact boolean?)
 (s/def ::AAA boolean?)
 (s/def ::onSale boolean?)
@@ -33,6 +33,7 @@
                                         ::sortBy
                                         ::desc
                                         ::lowerPrice
+                                        ::upperPrice
                                         ::metacritic
                                         ::steam/steamRating
                                         ::steam/steamAppRatings
@@ -43,14 +44,10 @@
                                         ::onSale
                                         ::output]))
 
-(s/def ::id not-blank?)
-(s/def ::deal-option (s/keys :req-un [::id]))
-
 (s/def ::internalName (s/nilable string?))
-(s/def ::title (s/nilable string?))
 (s/def ::dealRating (s/nilable string?))
 (s/def ::deal-item (s/keys :opt-un [::internalName
-                                    ::title
+                                    ::game/title
                                     ::metacritic/metacriticLink
                                     ::game/dealID
                                     ::store/storeID

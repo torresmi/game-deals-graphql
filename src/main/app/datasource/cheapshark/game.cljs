@@ -43,11 +43,9 @@
 (s/def ::title not-blank?)
 (s/def ::exact #{0 1})
 (s/def ::limit pos-int?)
-
 (defmulti search-game-options :title)
 (defmethod search-game-options nil [] (s/keys :req-un [::steam/steamAppID]))
 (defmethod search-game-options :default [] (s/keys :req-un [::title] :opt-un [::limit ::exact]))
-
 (s/def ::search-game-options (s/multi-spec search-game-options ::title))
 
 (s/def ::cheapestDealID (s/nilable string?))
