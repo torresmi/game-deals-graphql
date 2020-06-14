@@ -1,11 +1,11 @@
-(ns app.datasource.deal
+(ns app.datasource.cheapshark.deal
   (:require
-   [app.datasource.date :as date]
-   [app.datasource.game :as game]
-   [app.datasource.metacritic :as metacritic]
-   [app.datasource.pricing :as pricing]
-   [app.datasource.steam :as steam]
-   [app.datasource.store :as store]
+   [app.datasource.cheapshark.date :as date]
+   [app.datasource.cheapshark.game :as game]
+   [app.datasource.cheapshark.metacritic :as metacritic]
+   [app.datasource.cheapshark.pricing :as pricing]
+   [app.datasource.cheapshark.steam :as steam]
+   [app.datasource.cheapshark.store :as store]
    [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]))
 

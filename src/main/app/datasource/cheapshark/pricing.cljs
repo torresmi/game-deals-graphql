@@ -1,4 +1,4 @@
-(ns app.datasource.pricing
+(ns app.datasource.cheapshark.pricing
   (:require
    [cljs.spec.alpha :as s]))
 

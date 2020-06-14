@@ -1,6 +1,6 @@
-(ns app.datasource.cheap-shark-rest-it
+(ns app.datasource.cheapshark.service-it
   (:require
-   [app.datasource.cheap-shark-rest :as sut]
+   [app.datasource.cheapshark.service :as sut]
    [app.domain.service :as service]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [cljs.test :refer-macros [deftest is testing]]

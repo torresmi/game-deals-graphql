@@ -1,10 +1,10 @@
-(ns app.datasource.game
+(ns app.datasource.cheapshark.game
   (:require
-   [app.datasource.date :as date]
-   [app.datasource.metacritic :as metacritic]
-   [app.datasource.pricing :as pricing]
-   [app.datasource.steam :as steam]
-   [app.datasource.store :as store]
+   [app.datasource.cheapshark.date :as date]
+   [app.datasource.cheapshark.metacritic :as metacritic]
+   [app.datasource.cheapshark.pricing :as pricing]
+   [app.datasource.cheapshark.steam :as steam]
+   [app.datasource.cheapshark.store :as store]
    [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]))
 

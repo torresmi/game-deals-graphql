@@ -1,7 +1,7 @@
-(ns app.datasource.cheap-shark-rest
+(ns app.datasource.cheapshark.service
   (:require
-   [app.datasource.alert :as alerts]
-   [app.datasource.store :as stores]
+   [app.datasource.cheapshark.alert :as alerts]
+   [app.datasource.cheapshark.store :as stores]
    [app.domain.service :refer [Service]]
    ["apollo-datasource-rest" :refer [RESTDataSource]]
    [cemerick.url :as url]

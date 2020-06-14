@@ -1,6 +1,6 @@
-(ns app.datasource.store-test
+(ns app.datasource.cheapshark.store-test
   (:require
-   [app.datasource.store :as sut]
+   [app.datasource.cheapshark.store :as sut]
    [cljs.spec.alpha :as s]
    [clojure.test :refer [is] :refer-macros [deftest testing]]
    [clojure.test.check.clojure-test :refer-macros [defspec]]

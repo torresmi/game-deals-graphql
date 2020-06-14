@@ -1,4 +1,4 @@
-(ns app.datasource.date
+(ns app.datasource.cheapshark.date
   (:require
    [cljs.spec.alpha :as s]))
 

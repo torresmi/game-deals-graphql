@@ -1,4 +1,4 @@
-(ns app.datasource.steam
+(ns app.datasource.cheapshark.steam
   (:require
    [cljs.spec.alpha :as s]))
 

@@ -6,7 +6,7 @@
 
 (defn- with-network [f]
   (fn [_ options context]
-    (let [network (oget context "dataSources.cheap-shark-rest")
+    (let [network (oget context "dataSources.cheapshark-service")
           parsed-options (js->clj options :keywordize-keys true)]
       (-> (f network parsed-options)
           (p/then clj->js)))))

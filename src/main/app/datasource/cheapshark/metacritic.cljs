@@ -1,4 +1,4 @@
-(ns app.datasource.metacritic
+(ns app.datasource.cheapshark.metacritic
   (:require
    [cljs.spec.alpha :as s]))
 
