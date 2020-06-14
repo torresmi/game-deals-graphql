@@ -1,4 +1,4 @@
-(ns app.datasource.store
+(ns app.datasource.cheapshark.store
   (:require
    [app.domain.predicate :refer [not-blank?]]
    [cljs.spec.alpha :as s]

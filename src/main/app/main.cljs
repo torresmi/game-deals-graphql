@@ -1,6 +1,6 @@
 (ns app.main
   (:require
-   [app.datasource.cheap-shark-rest :as cheap-shark-rest]
+   [app.datasource.cheapshark.service :as cheapshark]
    [app.resolver :refer [resolver-map]]
    ["apollo-server" :as apollo]
    [shadow.resource :as rc]))
@@ -8,7 +8,7 @@
 (def type-defs (rc/inline "./schema.graphql"))
 
 (defn data-sources []
-  #js {:cheap-shark-rest (cheap-shark-rest/init)})
+  #js {:cheapshark-service (cheapshark/init)})
 
 (def resolvers (clj->js resolver-map))
 

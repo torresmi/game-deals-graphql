@@ -1,6 +1,6 @@
-(ns app.datasource.alert
+(ns app.datasource.cheapshark.alert
   (:require
-   [app.datasource.game :as game]
+   [app.datasource.cheapshark.game :as game]
    [app.domain.predicate :refer [email?]]
    [cemerick.url :as url]
    [cljs.spec.alpha :as s]))
