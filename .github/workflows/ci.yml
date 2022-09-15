@@ -17,7 +17,7 @@ jobs:
         run: shadow-cljs compile app
 
       - name: Lint
-        uses: DeLaGuardo/clojure-lint-action@v1
+        uses: DeLaGuardo/clojure-lint-action@master
         with:
           clj-kondo-args: --lint src
           github_token: ${{ secrets.GITHUB_TOKEN }}
