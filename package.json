@@ -31,7 +31,7 @@
     "apollo-datasource-rest": "^3.0.0",
     "apollo-server": "^3.0.0",
     "graphql": "^16.0.0",
-    "nodemon": "^2.0.19",
+    "nodemon": "^2.0.20",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
