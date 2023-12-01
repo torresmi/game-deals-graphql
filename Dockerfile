@@ -5,7 +5,7 @@ RUN shadow-cljs npm-deps && npm install --save-dev shadow-cljs
 COPY ./ /app/
 RUN shadow-cljs release app
 
-FROM node:alpine
+FROM node:21.2-alpine3.18
 WORKDIR /app
 ENV NODE_ENV production
 EXPOSE 4000
